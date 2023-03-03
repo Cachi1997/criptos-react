@@ -12,7 +12,7 @@ const Texto = styled.div`
 `
 
 export const Error = ({children}) => {
-	return (
-		<Texto>{children}</Texto>
-	)
+  return (
+    <Texto>{children}</Texto>
+  )
 }

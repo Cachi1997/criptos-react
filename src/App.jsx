@@ -45,49 +45,49 @@ const Imagen = styled.img`
 
 function App() {
 
-	const [monedas, setMonedas] = useState({})
-	const [cotizacion, setCotizacion] = useState({})
-	const [cargando, setCargando] = useState(false)
+  const [monedas, setMonedas] = useState({})
+  const [cotizacion, setCotizacion] = useState({})
+  const [cargando, setCargando] = useState(false)
 
-	useEffect(() => {
-		//Si no se eligio ninugna moneda, evitamos renderizar el estado la primera vez
-		if(Object.keys(monedas).length > 0){
-			const { moneda, criptomoneda } = monedas
-			const cotizarCrypto = async () =>{
-				setCargando(true)
-				setCotizacion({})
+  useEffect(() => {
+    //Si no se eligio ninugna moneda, evitamos renderizar el estado la primera vez
+    if(Object.keys(monedas).length > 0){
+      const { moneda, criptomoneda } = monedas
+      const cotizarCrypto = async () =>{
+        setCargando(true)
+        setCotizacion({})
 				
-				const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
-				const respuesta = await fetch(url)
-				const resultado = await respuesta.json()
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
+        const respuesta = await fetch(url)
+        const resultado = await respuesta.json()
 				
-				//Se accede de forma dinamica a las propiedades del objeto
-				setCotizacion(resultado.DISPLAY[criptomoneda][moneda])
-				setCargando(false)
-			}
+        //Se accede de forma dinamica a las propiedades del objeto
+        setCotizacion(resultado.DISPLAY[criptomoneda][moneda])
+        setCargando(false)
+      }
 			
-			cotizarCrypto()
-		}
-	}, [monedas])
+      cotizarCrypto()
+    }
+  }, [monedas])
 
-	return (
-		<Contenedor>
-			<Imagen 
-				src={ImagenCrypto}
-				alt="imagenes criptomonedas"
-			/>
-			<div>
-				<Heading>Cotiza criptomonedas al instante</Heading>
-				<Formulario 
-					setMonedas={setMonedas}
-				/>
-				{cargando && <Spinner />}
-				{cotizacion.PRICE && <Resultado 
-					cotizacion={cotizacion}
-				/>}
-			</div>
-		</Contenedor>
-	)
+  return (
+    <Contenedor>
+      <Imagen 
+        src={ImagenCrypto}
+        alt="imagenes criptomonedas"
+      />
+      <div>
+        <Heading>Cotiza criptomonedas al instante</Heading>
+        <Formulario 
+          setMonedas={setMonedas}
+        />
+        {cargando && <Spinner />}
+        {cotizacion.PRICE && <Resultado 
+          cotizacion={cotizacion}
+        />}
+      </div>
+    </Contenedor>
+  )
 }
 
 export default App
