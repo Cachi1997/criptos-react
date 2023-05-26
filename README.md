@@ -1,6 +1,11 @@
-Proyecto De Criptomonedas
+Cryptocurrencies Converter Project
 
-Este proyecto permite verificar el valor de una criptomoneda, eligiendo una moneda de cambio (USD, ARS, MXN y GBP)
+This project allows you to check the actual value of a cryptocurrency, choosing an exchange currency to convert (USD, GBP, ARS, MXN)
 
-La obtencion de los datos de la criptomoneda se realizan a travez de una api proporsionada por la pagina CryptoCompare
+The Crypto data is provided through an API of the page CryptoCompare
 
+How to run?
+
+Run the following command:
+
+> npm run dev
